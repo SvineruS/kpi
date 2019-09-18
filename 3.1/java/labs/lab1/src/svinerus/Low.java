@@ -3,10 +3,10 @@ package svinerus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task1 {
+public class Low {
 
 
-    public static String[] parse(String[] strings) {
+    public static String[] Task1(String[] strings) {
         float avg_len = 0;
         List<String> output = new ArrayList<>();
 

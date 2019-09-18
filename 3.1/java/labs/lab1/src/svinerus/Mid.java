@@ -1,8 +1,10 @@
 package svinerus;
 
-public class Task2 {
+import java.util.ArrayList;
 
-    public static String makePyramid(int height) {
+public class Mid {
+
+    public static String Task3(int height) {
         StringBuilder output = new StringBuilder();
 
         for (int row_index=0; row_index<height; row_index++) {
@@ -21,6 +23,20 @@ public class Task2 {
 
         return output.toString();
     }
+
+
+    public static int[][] Task4(int[][] matrix) {
+        int size = matrix.length;
+        int[][] newMatrix = new int[size][size];
+        for (int i=0; i<size; i++) {
+            for (int j=0; j<size; j++) {
+                newMatrix[size-1-i][j] = matrix[j][i];
+            }
+        }
+        return newMatrix;
+    }
+
+
 
 
 }
