@@ -1,3 +1,6 @@
+from tabulate import tabulate  # pip3 install tabulate
+
+
 def main():
     # user_input = get_user_input()
     user_input = [
@@ -18,19 +21,17 @@ def main():
         "Т4 С1 С2 Ф1 Ф2"
     ]
 
-    matrix1 = merge_matrix(user_input)
-    all_operations = get_all_operations(matrix1)
-    matrix2 = matrix_by_operations(matrix1, all_operations)
-
-    similarity = get_similarity(matrix2)
-    similarity = dict(sorted(similarity.items(), key=lambda i: -i[1]))
+    input_matrix = merge_matrix(user_input)
+    all_operations = get_all_operations(input_matrix)
+    operations_match_matrix = matrix_by_operations(input_matrix, all_operations)
+    similarity = get_similarity(operations_match_matrix)
     groups = get_groups(similarity)
 
-    print_m1(matrix1)
+    print_input_matrix(input_matrix)
     print_operations(all_operations)
-    print_m2(matrix2, all_operations)
-    print_similarity(similarity)
-    print(groups)
+    print_op_match_matrix(operations_match_matrix, all_operations)
+    print_similarity(similarity, len(operations_match_matrix))
+    print_groups(groups)
 
 
 def get_user_input():
@@ -45,87 +46,94 @@ def get_user_input():
 
 
 def merge_matrix(user_input):
-    return set(tuple(inp.split(" ")) for inp in user_input)
+    return [tuple(inp.split(" ")) for inp in user_input]
 
 
 def get_all_operations(matrix):
-    operations = set()
-    for row in matrix:
-        for i in row:
-            operations.add(i)
+    operations = set(el for row in matrix for el in row)  # сет из всех элементов
     return list(sorted(operations))
 
 
-def matrix_by_operations(matrix1, all_operations):
+def matrix_by_operations(matrix, all_operations):
+    # матрица со столбацами all_operations, строками из введенной матрици и True или False на пересечении
     return [
         [
             operation in row
-            for operation in all_operations
+            for operation in all_operations     # 2) элементы массива со всеми операциями
         ]
-        for row in matrix1
+        for row in matrix                       # 1) строки входной матрицы
     ]
 
 
 def get_similarity(matrix):
-
-    def get_rows_similarity(r1, r2):
-        cnt = 0
-        for i in range(len(r1)):
-            if r1[i] == r2[i]:
-                cnt += 1
-        return cnt
+    def get_rows_similarity(r1, r2):  # подобность 2х отдельных строк
+        return len([1 for i in range(len(r1)) if r1[i] == r2[i]])
 
     similarity = {}
-
-    for index in range(len(matrix) - 1):
-        row1 = matrix[index]
-        row2 = matrix[index+1]
-
-        similarity[(index, index+1)] = get_rows_similarity(row1, row2)
+    for i1 in range(len(matrix) - 1):  # перебор всех сочитаний (как в теории вероятности) индексов
+        for i2 in range(i1+1, len(matrix)):  # как же хорошо что хоть сюда я не засунул List comprehensions лол
+            similarity[i1, i2] = get_rows_similarity(matrix[i1], matrix[i2])
 
     return similarity
 
 
 def get_groups(similarity):
-    groups = []
+    similarity = sorted(similarity.items(), key=lambda i: -i[1])
+    groups = {}
     banned_rows = set()
-    for (r1, r2), s in similarity.items():
+
+    for (r1, r2), s in similarity:
         if r1 in banned_rows or r2 in banned_rows:
             continue
-        groups.append((r1, r2))
-        banned_rows.add(r1)
-        banned_rows.add(r2)
-    return groups
+
+        if s not in groups:
+            groups[s] = []
+        groups[s].extend([r1, r2])
+        banned_rows.update([r1, r2])
+
+    return list(groups.values())
 
 
-def print_m1(matrix):
-    print("Матрица:")
+# region print
+
+def print_input_matrix(matrix):
+    print("Входные данные:")
     for i, r in enumerate(matrix):
         print(f'{i}:', *r)
     print()
 
 
 def print_operations(operations):
-    print("Возможные операции: " + ", ".join(operations))
-    print()
+    print("Возможные операции: " + ", ".join(operations) + "\n")
 
 
-def print_m2(matrix, operations):
-    print("Матрица по операциям:")
-    print('  ', *operations, sep=' ')
+def print_op_match_matrix(matrix, operations):
+    print("Матрица соответсвий операциям:")
+    table = [['', *operations]]
     for i, row in enumerate(matrix):
-        print(i, end='  ')
-        for el in row:
-            print("+" if el else "-", " ", end='')
-        print()
-    print()
+        table.append([i, *["+" if el else "-" for el in row]])
+    print(tabulate(table, tablefmt="fancy_grid"))
 
 
-def print_similarity(similarity):
+def print_similarity(similarity, size):
     print("Подобность строк: ")
-    for (r1, r2), s in similarity.items():
-        print(f"{r1} и {r2} = {s}")
-    print()
+    table = [
+        [
+            '-' if y >= x else similarity[(y, x)]
+            for y in range(size)
+        ]
+        for x in range(size)
+    ]
+    print(tabulate(table, tablefmt="fancy_grid"))
 
+
+def print_groups(groups):
+    print("Группы: ")
+    for i, g in enumerate(groups):
+        print(f"Группа {i+1} = {{", end='')
+        print(*g, sep=', ', end='}\n')
+
+
+# endregion print
 
 main()
