@@ -21,7 +21,7 @@ def main():
         "Т4 С1 С2 Ф1 Ф2"
     ]
 
-    input_matrix = merge_matrix(user_input)
+    input_matrix = parse_input(user_input)
     all_operations = get_all_operations(input_matrix)
     operations_match_matrix = matrix_by_operations(input_matrix, all_operations)
     similarity = get_similarity(operations_match_matrix)
@@ -45,7 +45,7 @@ def get_user_input():
     return input_matrix
 
 
-def merge_matrix(user_input):
+def parse_input(user_input):
     return [tuple(inp.split(" ")) for inp in user_input]
 
 
