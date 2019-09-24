@@ -77,31 +77,20 @@ def get_similarity(matrix):
     return similarity
 
 
-def make_group(similarity, x, y):
-    group = {x, y}
-    for (x1, y1), s in similarity.items():
-        if x1 in group or y1 in group:
-            if s == similarity[(x, y)]:
-                group.update([x1, y1])
-
-    new_similarity = {}
-    for (x1, y1), s in similarity.items():
-        if x1 not in group and y1 not in group:
-            new_similarity[(x1, y1)] = s
-
-    return list(sorted(group)), new_similarity
-
-
 def get_groups(similarity):
     similarity = dict(sorted(similarity.items(), key=lambda i: i[1]))
     groups = []
 
     while similarity:
         (x, y), s = list(similarity.items()).pop()
-        g, similarity = make_group(similarity, x, y)
-        if not g:
-            break
-        groups.append(g)
+
+        group = {x, y}
+        for (x1, y1), s1 in similarity.items():
+            if x1 in group or y1 in group and s1 == s:
+                group.update([x1, y1])
+
+        similarity = {(x1, y1): s1 for (x1, y1), s1 in similarity.items() if x1 not in group and y1 not in group}
+        groups.append(group)
 
     return groups
 
