@@ -31,7 +31,7 @@ def main():
     print_operations(all_operations)
     print_op_match_matrix(operations_match_matrix, all_operations)
     print_similarity(similarity, len(operations_match_matrix))
-    print_groups(groups)
+    print_groups(groups, similarity)
 
 
 def get_user_input():
@@ -77,21 +77,33 @@ def get_similarity(matrix):
     return similarity
 
 
+def make_group(similarity, x, y):
+    group = {x, y}
+    for (x1, y1), s in similarity.items():
+        if x1 in group or y1 in group:
+            if s == similarity[(x, y)]:
+                group.update([x1, y1])
+
+    new_similarity = {}
+    for (x1, y1), s in similarity.items():
+        if x1 not in group and y1 not in group:
+            new_similarity[(x1, y1)] = s
+
+    return list(sorted(group)), new_similarity
+
+
 def get_groups(similarity):
-    similarity = sorted(similarity.items(), key=lambda i: -i[1])
-    groups = {}
-    banned_rows = set()
+    similarity = dict(sorted(similarity.items(), key=lambda i: i[1]))
+    groups = []
 
-    for (r1, r2), s in similarity:
-        if r1 in banned_rows or r2 in banned_rows:
-            continue
+    while similarity:
+        (x, y), s = list(similarity.items()).pop()
+        g, similarity = make_group(similarity, x, y)
+        if not g:
+            break
+        groups.append(g)
 
-        if s not in groups:
-            groups[s] = []
-        groups[s].extend([r1, r2])
-        banned_rows.update([r1, r2])
-
-    return list(groups.values())
+    return groups
 
 
 # region print
@@ -124,14 +136,19 @@ def print_similarity(similarity, size):
         ]
         for x in range(size)
     ]
+    for i, r in enumerate(table):
+        r.insert(0, f'{i}:')
+    table.insert(0, ['*']+list(range(size)))
     print(tabulate(table, tablefmt="fancy_grid"))
 
 
-def print_groups(groups):
+def print_groups(groups, similarity):
     print("Группы: ")
     for i, g in enumerate(groups):
+        s = similarity[tuple(g)[:2]]
         print(f"Группа {i+1} = {{", end='')
-        print(*g, sep=', ', end='}\n')
+        print(*g, sep=', ', end='')
+        print(f'}} по {s}')
 
 
 # endregion print
