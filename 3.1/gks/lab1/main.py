@@ -86,11 +86,11 @@ def get_groups(similarity):
 
         group = {x, y}
         for (x1, y1), s1 in similarity.items():
-            if x1 in group or y1 in group and s1 == s:
+            if (x1 in group or y1 in group) and s1 == s:
                 group.update([x1, y1])
 
         similarity = {(x1, y1): s1 for (x1, y1), s1 in similarity.items() if x1 not in group and y1 not in group}
-        groups.append(group)
+        groups.append(sorted(group))
 
     return groups
 
