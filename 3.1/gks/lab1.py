@@ -1,52 +1,45 @@
 from tabulate import tabulate  # pip3 install tabulate
 
 
+def parse_input(user_input):
+    return [tuple(inp.split(" ")) for inp in user_input]
+
+
+INPUT = [
+    "Т1 Ф1 Т4 С1 С2",
+    "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
+    "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
+    "Т4 С1 С2 Ф1 Ф2",
+    "Т3 Т4 С1 С2 Ф1 Т5",
+    "Т1 Т4 С1 С2 Ф1 Т5",
+    "Т1 Т2 Т4 С1 С2 Ф2 Т5",
+
+    "Т2 Т3 Т4 С1 С2 Р1 Ф1 Ф2",
+    "Ф2 Ф3 С3 Т2 Т3 Т4 С1 С2",
+    "Ф2 Т4 С1 С2 Т1",
+    "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
+    "Т1 Ф1 Т4 С1 С2",
+    "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
+    "Т4 С1 С2 Ф1 Ф2"
+]
+
+input_matrix = parse_input(INPUT)
+
+
 def main():
-    # user_input = get_user_input()
-    user_input = [
-        "Т1 Ф1 Т4 С1 С2",
-        "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
-        "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
-        "Т4 С1 С2 Ф1 Ф2",
-        "Т3 Т4 С1 С2 Ф1 Т5",
-        "Т1 Т4 С1 С2 Ф1 Т5",
-        "Т1 Т2 Т4 С1 С2 Ф2 Т5",
-
-        "Т2 Т3 Т4 С1 С2 Р1 Ф1 Ф2",
-        "Ф2 Ф3 С3 Т2 Т3 Т4 С1 С2",
-        "Ф2 Т4 С1 С2 Т1",
-        "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
-        "Т1 Ф1 Т4 С1 С2",
-        "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
-        "Т4 С1 С2 Ф1 Ф2"
-    ]
-
-    input_matrix = parse_input(user_input)
     all_operations = get_all_operations(input_matrix)
     operations_match_matrix = matrix_by_operations(input_matrix, all_operations)
     similarity = get_similarity(operations_match_matrix)
     groups = get_groups(similarity)
 
-    print_input_matrix(input_matrix)
-    print_operations(all_operations)
-    print_op_match_matrix(operations_match_matrix, all_operations)
-    print_similarity(similarity, len(operations_match_matrix))
-    print_groups(groups, similarity)
+    if __name__ == "__main__":
+        print_input_matrix(input_matrix)
+        print_operations(all_operations)
+        print_op_match_matrix(operations_match_matrix, all_operations)
+        print_similarity(similarity, len(operations_match_matrix))
+        print_groups(groups, similarity)
 
-
-def get_user_input():
-    print("enter matrix:")
-    input_matrix = []
-    for i in range(-1):
-        inp = input(f"{i+1}: ")
-        if not inp:
-            break
-        input_matrix.append(inp)
-    return input_matrix
-
-
-def parse_input(user_input):
-    return [tuple(inp.split(" ")) for inp in user_input]
+    return groups
 
 
 def get_all_operations(matrix):
@@ -59,9 +52,9 @@ def matrix_by_operations(matrix, all_operations):
     return [
         [
             operation in row
-            for operation in all_operations     # 2) элементы массива со всеми операциями
+            for operation in all_operations  # 2) элементы массива со всеми операциями
         ]
-        for row in matrix                       # 1) строки входной матрицы
+        for row in matrix  # 1) строки входной матрицы
     ]
 
 
@@ -71,7 +64,7 @@ def get_similarity(matrix):
 
     similarity = {}
     for i1 in range(len(matrix) - 1):  # перебор всех сочитаний (как в теории вероятности) индексов
-        for i2 in range(i1+1, len(matrix)):  # как же хорошо что хоть сюда я не засунул List comprehensions лол
+        for i2 in range(i1 + 1, len(matrix)):  # как же хорошо что хоть сюда я не засунул List comprehensions лол
             similarity[i1, i2] = get_rows_similarity(matrix[i1], matrix[i2])
 
     return similarity
@@ -89,8 +82,15 @@ def get_groups(similarity):
             if (x1 in group or y1 in group) and s1 == s:
                 group.update([x1, y1])
 
-        similarity = {(x1, y1): s1 for (x1, y1), s1 in similarity.items() if x1 not in group and y1 not in group}
+        similarity = {
+            (x1, y1): s1
+            for (x1, y1), s1 in similarity.items()
+            if x1 not in group and y1 not in group
+        }  # я не могу сделать del в цикле, поэтому приходится пересоздавать
+
         groups.append(sorted(group))
+
+        # todo возможно где то тут баг с тем что последний элемент не добавляется в группу
 
     return groups
 
@@ -127,7 +127,7 @@ def print_similarity(similarity, size):
     ]
     for i, r in enumerate(table):
         r.insert(0, f'{i}:')
-    table.insert(0, ['*']+list(range(size)))
+    table.insert(0, ['*'] + list(range(size)))
     print(tabulate(table, tablefmt="fancy_grid"))
 
 
@@ -135,11 +135,12 @@ def print_groups(groups, similarity):
     print("Группы: ")
     for i, g in enumerate(groups):
         s = similarity[tuple(g)[:2]]
-        print(f"Группа {i+1} = {{", end='')
+        print(f"Группа {i + 1} = {{", end='')
         print(*g, sep=', ', end='')
         print(f'}} по {s}')
 
 
 # endregion print
 
-main()
+if __name__ == "__main__":
+    main()
