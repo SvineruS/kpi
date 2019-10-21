@@ -36,10 +36,7 @@ def make_graph(group, input_matrix):
 
 
 def zeros(n):
-    array = [0] * n
-    for i in range(n):
-        array[i] = [0] * n
-    return array
+    return [[0] * n for i in range(n)]
 
 
 if __name__ == "__main__":
