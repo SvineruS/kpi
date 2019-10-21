@@ -9,34 +9,34 @@ def main():
     input_matrix = lab1.input_matrix
 
     for g in groups:
-        make_graph(g, input_matrix)
+        graph, op = make_graph(g, input_matrix)
+        split_modules(graph, op)
         break
 
 
 def make_graph(group, input_matrix):
-    def parse_row(row):
-        row_indexes = [op.index(r) for r in row]
-        for i in range(len(row)-1):
-            el1 = row_indexes[i]
-            el2 = row_indexes[i+1]
-            graph[el1][el2] = 1
-
     gr, op = group
     op = list(sorted(op))
     graph = zeros(len(op))
 
-    print(*op, sep='\n')
+    for row_index in gr:
+        row = input_matrix[row_index]
+        row_indexes = [op.index(r) for r in row]
+        for i in range(len(row) - 1):
+            el1 = row_indexes[i]
+            el2 = row_indexes[i + 1]
+            graph[el1][el2] = 1
 
-    for i in gr:
-        row = input_matrix[i]
-        print(row)
-        parse_row(row)
+    return graph, op
 
-    print(*graph, sep='\n')
+
+def split_modules(graph, op):
+    pass
+
 
 
 def zeros(n):
-    return [[0] * n for i in range(n)]
+    return [[0] * n for _ in range(n)]
 
 
 if __name__ == "__main__":
