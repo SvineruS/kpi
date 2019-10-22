@@ -6,10 +6,13 @@ def main():
     input_matrix = lab1.input_matrix
 
     groups = get_operations_by_groups(input_matrix, groups)
-    optimized_groups = optimize(groups)
 
     if __name__ == "__main__":
         print_groups(groups)
+
+    optimized_groups = optimize(groups)
+
+    if __name__ == "__main__":
         print("\n\nУточненные группы")
         print_groups(optimized_groups)
 
@@ -43,7 +46,7 @@ def optimize(groups):
 
         for i, (_, op) in enumerate(groups[1:]):
             if op.issubset(groups[0][1]):
-                optimize_(groups, i)
+                optimize_(groups, i+1)
                 break
 
         return groups
