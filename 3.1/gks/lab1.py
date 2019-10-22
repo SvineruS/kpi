@@ -5,23 +5,33 @@ def parse_input(user_input):
     return [tuple(inp.split(" ")) for inp in user_input]
 
 
-INPUT = [
-    "Т1 Ф1 Т4 С1 С2",
-    "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
-    "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
-    "Т4 С1 С2 Ф1 Ф2",
-    "Т3 Т4 С1 С2 Ф1 Т5",
-    "Т1 Т4 С1 С2 Ф1 Т5",
-    "Т1 Т2 Т4 С1 С2 Ф2 Т5",
+# INPUT = [
+#     "Т1 Ф1 Т4 С1 С2",
+#     "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
+#     "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
+#     "Т4 С1 С2 Ф1 Ф2",
+#     "Т3 Т4 С1 С2 Ф1 Т5",
+#     "Т1 Т4 С1 С2 Ф1 Т5",
+#     "Т1 Т2 Т4 С1 С2 Ф2 Т5",
+#
+#     "Т2 Т3 Т4 С1 С2 Р1 Ф1 Ф2",
+#     "Ф2 Ф3 С3 Т2 Т3 Т4 С1 С2",
+#     "Ф2 Т4 С1 С2 Т1",
+#     "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
+#     "Т1 Ф1 Т4 С1 С2",
+#     "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
+#     "Т4 С1 С2 Ф1 Ф2"
+# ]
 
-    "Т2 Т3 Т4 С1 С2 Р1 Ф1 Ф2",
-    "Ф2 Ф3 С3 Т2 Т3 Т4 С1 С2",
-    "Ф2 Т4 С1 С2 Т1",
-    "Т1 Ф1 Ф2 Т4 С1 С2 Т2 Т3",
-    "Т1 Ф1 Т4 С1 С2",
-    "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
-    "Т4 С1 С2 Ф1 Ф2"
+INPUT = [
+    "T1 T2 T3 C1 C2",
+    "T1 T3 C1",
+    "T2 T3",
+    "T4 C3 C4",
+    "T4 C3",
+    "T4"
 ]
+
 
 input_matrix = parse_input(INPUT)
 
@@ -30,7 +40,7 @@ def main():
     all_operations = get_all_operations(input_matrix)
     operations_match_matrix = matrix_by_operations(input_matrix, all_operations)
     similarity = get_similarity(operations_match_matrix)
-    groups = get_groups(similarity)
+    groups = get_groups(similarity, input_matrix)
 
     if __name__ == "__main__":
         print_input_matrix(input_matrix)
@@ -70,7 +80,7 @@ def get_similarity(matrix):
     return similarity
 
 
-def get_groups(similarity):
+def get_groups(similarity, matrix):
     similarity = dict(sorted(similarity.items(), key=lambda i: i[1]))
     groups = []
 
@@ -90,7 +100,13 @@ def get_groups(similarity):
 
         groups.append(sorted(group))
 
-        # todo возможно где то тут баг с тем что последний элемент не добавляется в группу
+    alist = list()
+    for i in groups:
+        alist.extend(i)
+
+    for j, _ in enumerate(matrix):
+        if j not in alist:
+            groups.append([j])
 
     return groups
 
@@ -134,10 +150,11 @@ def print_similarity(similarity, size):
 def print_groups(groups, similarity):
     print("Группы: ")
     for i, g in enumerate(groups):
-        s = similarity[tuple(g)[:2]]
+        # s = similarity[tuple(g)[:2]]
         print(f"Группа {i + 1} = {{", end='')
         print(*g, sep=', ', end='')
-        print(f'}} по {s}')
+        print(f'}}')
+        # print(f'}} по {s}')
 
 
 # endregion print
