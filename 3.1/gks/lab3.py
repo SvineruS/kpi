@@ -11,25 +11,16 @@ def main():
         for group in lab2_output
     ]
 
-    optimized_modules = optimize_modules(modules_by_group)
-
     if __name__ == "__main__":
         print_operations_by_group(lab2_output, input_matrix)
         print_modules_by_group(modules_by_group)
-        print_optimized_modules(optimized_modules)
 
 
 def get_modules(group, input_matrix):
     graph = Graph.create_from_group(group, input_matrix)
+    # graph.print()
     graph.optimize()
     return [tuple(i) for i in graph.names]
-
-
-def optimize_modules(modules_by_group):
-    modules = [item for sublist in modules_by_group for item in sublist]
-    modules = set(modules)
-    modules = sorted(modules, key=lambda i: len(i))
-    return modules
 
 
 class Graph:
@@ -55,7 +46,8 @@ class Graph:
         self.names = names
 
     def print(self):
-        print(*self.names, sep='\n')
+        for i in self.names:
+            print('-'.join(i))
         print(*self.matrix, sep='\n')
 
     def find_cycle(self, visited):
@@ -126,12 +118,6 @@ def print_modules_by_group(modules_by_group):
         print(f"Группа {i}:")
         for m in ms:
             print('\t\t', ', '.join(m))
-
-
-def print_optimized_modules(optimized_modules):
-    print("\n\nУточненные модули: ")
-    for i in optimized_modules:
-        print(', '.join(i))
 
 # endregion
 
