@@ -14,6 +14,7 @@ def main():
     optimized_modules = optimize_modules(modules_by_group)
 
     if __name__ == "__main__":
+        print_operations_by_group(lab2_output, input_matrix)
         print_modules_by_group(modules_by_group)
         print_optimized_modules(optimized_modules)
 
@@ -54,14 +55,14 @@ class Graph:
         self.names = names
 
     def print(self):
-        print(self.names)
+        print(*self.names, sep='\n')
         print(*self.matrix, sep='\n')
 
     def find_cycle(self, visited):
         for index, is_adj in enumerate(self.matrix[visited[-1]]):
-            if is_adj:
-                if index in visited:
-                    return visited
+            if is_adj and len(visited) >= 2 and index == visited[0]:
+                return visited
+            if is_adj and index not in visited:
                 return self.find_cycle(visited + [index])
 
     def find_chain(self, visited):
@@ -72,7 +73,6 @@ class Graph:
                 return self.find_chain(visited + [index])
 
     def merge_vertices(self, vertices):
-        vertices = list(sorted(vertices, reverse=True))
         merge_to = vertices.pop(0)
 
         for vi in vertices:
@@ -83,6 +83,7 @@ class Graph:
                 self.matrix[i][merge_to] = self.matrix[i][merge_to] or self.matrix[i][vi]
                 self.matrix[i][i] = 0
 
+        vertices = list(sorted(vertices, reverse=True))
         for vi in vertices:
             del self.matrix[vi]
             del self.names[vi]
@@ -95,15 +96,14 @@ class Graph:
                 self.merge_vertices(vertices)
                 return True
 
-        while True:
+        def optimize_():
             for i in range(len(self.matrix)):
-                if any((
-                    merge_if_(self.find_cycle([i])),
-                    merge_if_(self.find_chain([i]))
-                )):
-                    break
-            break
+                if merge_if_(self.find_cycle([i])) or\
+                   merge_if_(self.find_chain([i])):
+                    return True
 
+        while optimize_():
+            pass
 
 # region utils and print
 
@@ -111,8 +111,17 @@ def zeros(n):
     return [[0] * n for _ in range(n)]
 
 
+def print_operations_by_group(groups, input_matrix):
+    print('Операции в группе: ')
+    for i, group in enumerate(groups):
+        print(f"Группа {i}:")
+        for row_index in group[0]:
+            row = input_matrix[row_index]
+            print('\t\t', ', '.join(row))
+
+
 def print_modules_by_group(modules_by_group):
-    print("Модули по группам")
+    print("\n\nМодули в группах:")
     for i, ms in enumerate(modules_by_group):
         print(f"Группа {i}:")
         for m in ms:
@@ -120,7 +129,7 @@ def print_modules_by_group(modules_by_group):
 
 
 def print_optimized_modules(optimized_modules):
-    print("\n\nУточненные модули")
+    print("\n\nУточненные модули: ")
     for i in optimized_modules:
         print(', '.join(i))
 
