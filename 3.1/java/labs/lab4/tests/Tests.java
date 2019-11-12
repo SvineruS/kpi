@@ -1,7 +1,6 @@
-package svinerus;
-
 import org.junit.jupiter.api.Test;
 import svinerus.Animal.Zebra;
+import svinerus.Cage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
