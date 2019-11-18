@@ -35,7 +35,8 @@ public class Main {
 
         for (int i=0; i<4; i++) {
             shapes[i*3+0] = new Rectangle("color"+rnd.nextInt(10), rnd.nextInt(10), rnd.nextInt(10));
-            shapes[i*3+1] = new Triangle("color"+rnd.nextInt(10), rnd.nextInt(10), rnd.nextInt(10), rnd.nextInt(10));
+            int temp = rnd.nextInt(10);
+            shapes[i*3+1] = new Triangle("color"+rnd.nextInt(10), 3*temp, 4*temp, 5*temp);
             shapes[i*3+2] = new Circle("color"+rnd.nextInt(10), rnd.nextInt(10));
         }
         return shapes;

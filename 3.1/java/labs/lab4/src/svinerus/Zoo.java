@@ -1,7 +1,5 @@
 package svinerus;
 
-import svinerus.Cage.Cage;
-
 import java.util.ArrayList;
 import java.util.List;
 
