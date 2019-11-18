@@ -15,12 +15,14 @@ def main():
         print_operations_by_group(lab2_output, input_matrix)
         print_modules_by_group(modules_by_group)
 
+    return modules_by_group
+
 
 def get_modules(group, input_matrix):
     graph = Graph.create_from_group(group, input_matrix)
     # graph.print()
     graph.optimize()
-    return [tuple(i) for i in graph.names]
+    return graph.names
 
 
 class Graph:
