@@ -4,16 +4,32 @@ import svinerus.Shapes.Circle;
 import svinerus.Shapes.Rectangle;
 import svinerus.Shapes.Triangle;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Shape[] shapes = createData();
 
-        System.out.println("DATA: ");
+        System.out.println("Enter file name to load shapes or enter to random:");
+        String filename = new Scanner(System.in).nextLine();
+        Shape[] shapes;
+        if (filename.equals("")) {
+            shapes = createData();
+        } else {
+            try {
+                shapes = Serializer.Load(filename);
+                System.out.println("load success");
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("file not found");
+                shapes = createData();
+            }
+        }
+
+        System.out.println("\nDATA: ");
         printData(shapes);
 
 
@@ -27,6 +43,19 @@ public class Main {
         sortByColor(shapes);
         System.out.println("\n\nDATA SORTED BY COLOR: ");
         printData(shapes);
+
+
+        System.out.println("\n Enter file name to save shapes or enter to skip:");
+        filename = new Scanner(System.in).nextLine();
+        if (filename.equals(""))
+            return;
+        try {
+            Serializer.Save(shapes, filename);
+            System.out.println("save success");
+        } catch (IOException e) {
+            System.out.println("failed");
+        }
+
     }
 
     static Shape[] createData() {
