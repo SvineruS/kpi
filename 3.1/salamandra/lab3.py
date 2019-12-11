@@ -1,1 +1,16 @@
-# ну и где задания саламандр бля
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.use("TkAgg")
+
+
+def f(x):
+    return np.tan(x) / x
+
+
+x = np.linspace(-5, 5, 100)
+y = f(x)
+
+plt.plot(x, y)
+plt.show()
