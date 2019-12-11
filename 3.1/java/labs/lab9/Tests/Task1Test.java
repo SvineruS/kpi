@@ -1,11 +1,12 @@
-package svinerus;
+import svinerus.Task1.Account;
+import svinerus.Task1.Bank;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Tests {
+class Task1Test {
 
     @org.junit.jupiter.api.Test
     void test() {

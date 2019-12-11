@@ -1,4 +1,4 @@
-package svinerus;
+package svinerus.Task1;
 
 public class Account {
 

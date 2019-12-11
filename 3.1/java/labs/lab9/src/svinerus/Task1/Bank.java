@@ -1,10 +1,10 @@
-package svinerus;
+package svinerus.Task1;
 
 import java.util.ArrayList;
 
 public class Bank {
 
-    ArrayList<Account> accounts = new ArrayList<>();
+    public ArrayList<Account> accounts = new ArrayList<>();
 
     public synchronized void transfer(Account from, Account to,  int amount){
         from.withdraw(amount);
