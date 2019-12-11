@@ -48,7 +48,7 @@ class GetPIRunnable implements Runnable {
             if (is_in_circle(random.nextDouble(), random.nextDouble()))
                 count_++;
 
-        synchronized (Runnable.class) {
+        synchronized (GetPIRunnable.class) {
             count += count_;
         }
 
