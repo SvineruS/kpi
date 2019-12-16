@@ -43,14 +43,14 @@ def get_firstlast_operations(input_matrix):
 
 
 def swap_modules(modules, element, to_pos):
-
-    def find_module_with_element(modules_, element_):
-        for module_id, module in enumerate(modules_):
-            if element_ in module:
-                return module_id
-
     from_pos = find_module_with_element(modules, element)
     modules[from_pos], modules[to_pos] = modules[to_pos], modules[from_pos]
+
+
+def find_module_with_element(modules, element):
+    for module_id, module in enumerate(modules):
+        if element in module:
+            return module_id
 
 
 if __name__ == '__main__':
