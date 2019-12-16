@@ -1,6 +1,3 @@
-from tabulate import tabulate  # pip3 install tabulate
-
-
 def parse_input(user_input):
     return [tuple(inp.split(" ")) for inp in user_input]
 
@@ -22,6 +19,15 @@ INPUT = [
     "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
     "Т4 С1 С2 Ф1 Ф2"
 ]
+#
+# INPUT = [
+#     "T1 T2 T3 C1 C2",
+#     "T1 T3 C1",
+#     "T2 T3",
+#     "T4 C3 C4",
+#     "T4 C3",
+#     "T4"
+# ]
 
 # INPUT = [
 #     "T1 T2 T3 C1 C2",
@@ -160,4 +166,5 @@ def print_groups(groups, similarity):
 # endregion print
 
 if __name__ == "__main__":
+    from tabulate import tabulate  # pip3 install tabulate
     main()

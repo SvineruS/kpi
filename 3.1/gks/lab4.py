@@ -10,6 +10,8 @@ def main():
         lab3.print_modules_by_group(lab3_output)
         print_optimized_modules(optimized_modules)
 
+    return optimized_modules
+
 
 def optimize_modules(modules_by_group):
     modules = [list(item) for sublist in modules_by_group for item in sublist]
