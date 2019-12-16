@@ -19,15 +19,6 @@ INPUT = [
     "Т2 Т3 Ф1 Ф2 Р1 Т4 С1 С2",
     "Т4 С1 С2 Ф1 Ф2"
 ]
-#
-# INPUT = [
-#     "T1 T2 T3 C1 C2",
-#     "T1 T3 C1",
-#     "T2 T3",
-#     "T4 C3 C4",
-#     "T4 C3",
-#     "T4"
-# ]
 
 # INPUT = [
 #     "T1 T2 T3 C1 C2",
@@ -37,7 +28,6 @@ INPUT = [
 #     "T4 C3",
 #     "T4"
 # ]
-
 
 input_matrix = parse_input(INPUT)
 
