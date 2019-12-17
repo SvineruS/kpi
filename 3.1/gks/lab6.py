@@ -14,12 +14,15 @@ def main():
 def make_graph(input_matrix, modules):
     names = [''.join(m) for m in modules]
     edges_green, edges_red = [], []
-    rows_by_modules = {i: set() for i, _ in enumerate(modules)}
+
+    modules_start = {i: set() for i, _ in enumerate(modules)}
+    modules_end = {i: set() for i, _ in enumerate(modules)}
 
     for row_index, row in enumerate(input_matrix):
         modules_index = [lab5.find_module_with_element(modules, element) for element in row]
-        for i in modules_index:
-            rows_by_modules[i].add(row_index)
+
+        modules_start[modules_index[0]].add(row_index)
+        modules_end[modules_index[-1]].add(row_index)
 
         for i in range(len(row) - 1):
             el1 = modules_index[i]
@@ -43,10 +46,15 @@ def make_graph(input_matrix, modules):
     nx.draw_networkx_edges(G, pos, edgelist=edges_green, connectionstyle='arc3,rad=-0.5', edge_color='g')  # зеленые дуги
     nx.draw_networkx_edges(G, pos, edgelist=edges_red,   connectionstyle='arc3,rad=-0.5', edge_color='r')  # красные дуги
 
-    for mod, rows in rows_by_modules.items():
+    for mod, rows in modules_start.items():
         rows = map(str, sorted(rows))
         plt.plot((mod-0.3, mod-0.3), (0.03, 0.2), color='k', linewidth=0.5)  # верт. линия
-        plt.text(mod-0.25, 0.1, '\n'.join(rows), fontsize=6)  # надпись
+        plt.text(mod-0.25, 0.15, '\n'.join(rows), fontsize=6)  # надпись
+
+    for mod, rows in modules_end.items():
+        rows = map(str, sorted(rows))
+        plt.plot((mod-0.3, mod-0.3), (-0.03, -0.2), color='k', linewidth=0.5)  # верт. линия
+        plt.text(mod-0.25, -0.17, '\n'.join(rows), fontsize=6)  # надпись
 
     plt.show()
 
