@@ -37,14 +37,12 @@
     <caption style="font-size: 24px;">Phone Numbers</caption>
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Contact</th>
+        <th>Number</th>
     </tr>
     {% for phone_number in phone_numbers %}
         <tr>
             <td>{{ phone_number.id }}</td>
-            <td>{{ phone_number.name }}</td>
-            <td>{{ phone_number.group.name }}</td>
+            <td>{{ phone_number.number }}</td>
         </tr>
     {% endfor %}
     <p>Всего: {{ phone_numbers.count }} номеров</p>
