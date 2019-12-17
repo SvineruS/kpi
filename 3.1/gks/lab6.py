@@ -26,7 +26,7 @@ def make_graph(input_matrix, modules):
             el2 = modules_index[i + 1]
             edge = (names[el1], names[el2])
 
-            if el1 > el2:
+            if el1 < el2:
                 edges_green.append(edge)
             else:
                 edges_red.append(edge)
@@ -40,8 +40,8 @@ def make_graph(input_matrix, modules):
 
     nx.draw_networkx_nodes(G, pos, node_shape='s', node_color='white', edgecolors='gray', node_size=3500)  # квадраты
     nx.draw_networkx_labels(G, pos, font_size=7)                                                           # надписи
-    nx.draw_networkx_edges(G, pos, edgelist=edges_green, connectionstyle='arc3,rad=0.5', edge_color='g')  # зеленые дуги
-    nx.draw_networkx_edges(G, pos, edgelist=edges_red,   connectionstyle='arc3,rad=0.5', edge_color='r')  # красные дуги
+    nx.draw_networkx_edges(G, pos, edgelist=edges_green, connectionstyle='arc3,rad=-0.5', edge_color='g')  # зеленые дуги
+    nx.draw_networkx_edges(G, pos, edgelist=edges_red,   connectionstyle='arc3,rad=-0.5', edge_color='r')  # красные дуги
 
     for mod, rows in rows_by_modules.items():
         rows = map(str, sorted(rows))
