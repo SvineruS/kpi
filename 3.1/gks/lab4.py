@@ -23,9 +23,7 @@ def optimize_modules(modules_by_group):
                 return True
 
     for i, m in enumerate(modules):
-        for j, op in enumerate(m):
-            if exist(op, i):
-                del m[j]
+        modules[i] = [m for m in modules[i] if not exist(m, i)]
 
     return list(filter(None, modules))
 
