@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="{% url 'edit_post' id=id %}" method="POST">
+    <p><b>Edit Contact #{{ id }}</b></p>
+    Name
+    <label>
+        <input type="text" name="name" value="">
+    </label><br>
+    Surname
+    <label>
+        <input type="text" name="surname" value="">
+    </label><Br>
+    <input type="submit" value="Изменить">
+</form>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="16be2f46-f69d-4d20-8495-efc1e8e09c99" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/labs.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new_proj/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new_proj/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new_proj/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new_proj/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/migrations/0002_auto_20191216_1529.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/migrations/0003_auto_20191217_0025.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newapp/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/calc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contacts.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/phone_numbers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/labs/lab8/src/svinerus/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/labs/lab8/src/svinerus/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/tasks/Лабы/Task 1 Low StarterKit.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/tasks/Лабы/Task 1 Low StarterKit.docx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1V5Ogsh7IX465I069pAd6cRsmz5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="labs" type="Python.DjangoServer" factoryName="Django server">
+      <module name="labs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="new_proj.settings" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16be2f46-f69d-4d20-8495-efc1e8e09c99" name="Default Changelist" comment="" />
+      <created>1576539603845</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576539603845</updated>
+      <workItem from="1576539610299" duration="5193000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="661" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576539927334">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state x="661" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/56.0.1864.1080@56.0.1864.1080" timestamp="1576539927334" />
+    <state x="672" y="123" key="#labs" timestamp="1576540037389">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state x="672" y="123" key="#labs/56.0.1864.1080@56.0.1864.1080" timestamp="1576540037389" />
+    <state width="1818" height="86" key="GridCell.Tab.0.bottom" timestamp="1576544441440">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state width="1818" height="86" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1576544441440" />
+    <state width="1818" height="86" key="GridCell.Tab.0.center" timestamp="1576544441439">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state width="1818" height="86" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1576544441439" />
+    <state width="1818" height="86" key="GridCell.Tab.0.left" timestamp="1576544441439">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state width="1818" height="86" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1576544441439" />
+    <state width="1818" height="86" key="GridCell.Tab.0.right" timestamp="1576544441440">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state width="1818" height="86" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1576544441440" />
+    <state x="472" y="165" key="SettingsEditor" timestamp="1576540078080">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state x="472" y="165" key="SettingsEditor/56.0.1864.1080@56.0.1864.1080" timestamp="1576540078080" />
+    <state x="311" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576541686472">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state x="311" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/56.0.1864.1080@56.0.1864.1080" timestamp="1576541686472" />
+    <state x="651" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1576542807428">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state x="651" y="239" width="672" height="678" key="search.everywhere.popup/56.0.1864.1080@56.0.1864.1080" timestamp="1576542807428" />
+  </component>
+</project>

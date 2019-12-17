@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Screen</title>
+    <style>
+        table {
+            font-family: "Times New Roman", sans-serif;
+            font-size: 14px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td:first-child {
+            background: #AFCDE7;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        th, td {
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: white;
+        }
+
+        td {
+            background: #D8E6F3;
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<p><a href="{% url 'create' %}">Create New Contact</a></p>
+<table style="border: 1px;">
+    <caption style="font-size: 24px;">Contacts</caption>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr>
+    {% for contact in contacts %}
+        <tr>
+            <td>{{ contact.id }}</td>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.surname }}</td>
+            <td><a href="{% url 'edit' id=contact.id %}">Edit</a></td>
+            <td><a href="{% url 'delete' id=contact.id %}">Delete</a></td>
+            <td><a href="{% url 'get' id=contact.id %}">Details</a></td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

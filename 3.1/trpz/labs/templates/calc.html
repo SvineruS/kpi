@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+<form action="{% url 'calc' %}" method="POST">
+    {% csrf_token %}
+    <p><b>Вихідні дані: Літери, що повторюються у цих словах, знайдені літери відсортувати у алфавітному порядку.</b></p>
+    Введіть 2 слова через пробіл:
+    <input type="text" name="input">
+    <input type="submit" value="Го">
+</form>
+
+{% if result %}
+<p>Відповідь: {{ result }}</p>
+{% endif %}
+
+</body>
+</html>
