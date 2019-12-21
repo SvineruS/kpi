@@ -7,7 +7,7 @@ def main():
     input_matrix = lab1.input_matrix
     modules = lab4.main()
 
-    first, last = get_firstlast_operations(input_matrix)
+    first, last = get_firstlast_operations(input_matrix, modules)
 
     if __name__ == '__main__':
         print("Операции: ")
@@ -28,7 +28,7 @@ def main():
     return modules
 
 
-def get_firstlast_operations(input_matrix):
+def get_firstlast_operations(input_matrix, modules):
     first_operations = Counter()
     last_operations = Counter()
 
@@ -37,7 +37,11 @@ def get_firstlast_operations(input_matrix):
         last_operations[operation[-1]] += 1
 
     first = first_operations.most_common()[0][0]
-    last = last_operations.most_common()[0][0]
+    lasts = last_operations.most_common()
+    last = lasts.pop(0)[0]
+
+    while find_module_with_element(modules, first) == find_module_with_element(modules, last):
+        last = lasts.pop(0)[0]
 
     return first, last
 
