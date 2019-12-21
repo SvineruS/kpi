@@ -36,20 +36,22 @@ def get_operations_by_groups(input_matrix, groups):
 
 
 def optimize(groups):
-    def optimize_(groups_, index):
-        groups_[0][0].extend(groups_[index][0])
-        groups_[0][1].update(groups_[index][1])
-        del groups_[index]
+    def move(from_index, to_index):
+        groups[to_index][0].extend(groups[from_index][0])
+        groups[to_index][1].update(groups[from_index][1])
+        del groups[from_index]
+
+    def optimize_():
+        for i_to, (_, op_to) in enumerate(groups):
+            for i_from in range(i_to+1, len(groups)):
+                if groups[i_from][1].issubset(op_to):
+                    move(i_from, i_to)
+                    return True
 
     while True:
         groups = sorted(groups, key=lambda v: len(v[1]), reverse=True)
-
-        for i, (_, op) in enumerate(groups[1:]):
-            if op.issubset(groups[0][1]):
-                optimize_(groups, i+1)
-                break
-
-        return groups
+        if not optimize_():
+            return groups
 
 
 def print_groups(groups):
