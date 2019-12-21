@@ -20,7 +20,8 @@ def main():
 
 def get_modules(group, input_matrix):
     graph = Graph.create_from_group(group, input_matrix)
-    # graph.print()
+    if __name__ == "__main__":
+        graph.draw()
     graph.optimize()
     return graph.names
 
@@ -47,10 +48,16 @@ class Graph:
         self.matrix = matrix
         self.names = names
 
-    def print(self):
-        for i in self.names:
-            print('-'.join(i))
-        print(*self.matrix, sep='\n')
+    def draw(self):
+        import networkx as nx
+        import matplotlib.pyplot as plt
+
+        names = [''.join(m) for m in self.names]
+        g = [(names[i1], names[i2]) for i1, row in enumerate(self.matrix) for i2, b in enumerate(row) if b]
+        G = nx.DiGraph()
+        G.add_edges_from(g)
+        nx.draw_circular(G, with_labels=True, node_size=3500)
+        plt.show()
 
     def find_cycle(self, visited):
         for index, is_adj in enumerate(self.matrix[visited[-1]]):
