@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+.green{
+    background-color:#FF5733;
+}
+
+.thumb{
+    margin-bottom: 30px;
+}
+
+.page-top{
+    margin-top:85px;
+}
+
+img.zoom{
+    width: 100%;
+    height: 200px;
+    border-radius:5px;
+    object-fit:cover;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+}
+
+.transition{
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.modal-header{
+    border-bottom: none;
+}
+
+.modal-title{
+    color:#000;
+}
+
+.modal-footer{
+    display:none;
+}
+
+.modal-open {
+ overflow-y: scroll;
+}
+
+body{
+  font-size: 14px;
+  font-family: 'Sacramento', cursive;
+  color: #626262;
+  background-color:#FF5733;
+  overflow-y: scroll;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+a{
+  color: #b4ad9e;
+}
+
+a:hover{
+  color: #898377;
+}
+
+p{
+    line-height: 1.5rem;
+}
+
+h2, h3{
+    margin: 1rem 0;
+    font-size: 30px;
+}
+
+hedder .navbar-light{
+    background-color: #fff;
+}
+header .navbar-brand{
+   font-family: 'Sacramento', cursive;
+    font-size: 30px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+header .nav-item{
+    text-transform: uppercase;
+    color: #FF5733;
+    margin-left: 25px;
+}
+
+header .nav-item a::after{
+    content: '';
+    display: block;
+    width: 100%;
+    background-color: #ccc;
+    height: 5px;
+    transform: scale(0);
+    transition: all .3s;
+}
+
+header .nav-item a:hover::after{
+    transform: scale(1);
+}
+
+.post-category,
+.link-more{
+    font-family: 'Sacramento', cursive;
+    font-size: 14px;
+    color: #b4ad9e;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.post-title a{
+    color: #626262;
+}
+
+.grid-posts{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.grid-posts .card{
+    border: 0;
+    margin-bottom: 100px;
+}
+
+.grid-posts .card-body{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.grid-posts .card-img-top{
+    max-height: 350px;
+    border-top-left-radius: calc(.75rem - 1px);
+    border-top-right-radius: calc(.75rem - 1px);
+}
+
+.Load-more{
+    padding: 1rem 2rem;
+    border-color: #626262;
+    border-radius: 0;
+}
+
+.Load-more span{
+    display: none;
+}
+
+footer{
+    background-color: #f0f0f0;
+    padding-top: 10px;
+    color: #000;
+}
+
+.footer-left a{
+    color: #000;
+    margin-right: 10px;
+}
+
+.footer-right a{
+    color: #626262;
+    margin-left: 10px;
+}
+
+.tab-content {
+    min-height: calc(100vh - 121px);
+}
