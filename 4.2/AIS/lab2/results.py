@@ -5,6 +5,7 @@ import random
 import time
 from collections import defaultdict
 from multiprocessing import Pool
+from statistics import mean
 
 from tabulate import tabulate
 
@@ -86,6 +87,10 @@ def main():
     plot("Time", experiments, time_)
     plot("States", experiments, states)
     print(tabulate(table, headers=['№', 'Алгоритм', 'Вихідний стан', 'Цільовий стан', 'Час', 'Кількість вузлів', 'Кількість вузлів в пам\'яті']))
+
+    for m, v in {'Time': time_, 'States': states}.items():
+        for alg_name, values in v.items():
+            print(alg_name, m, "mean", mean(values))
 
 
 main()
